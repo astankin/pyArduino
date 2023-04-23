@@ -1,16 +1,15 @@
 
-int potPin = A0;
-int potVal;
+int cnt = 1;
 int DL = 100;
 void setup() {
   // put your setup code here, to run once:
-pinMode(potPin,INPUT);
 Serial.begin(115200);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-potVal = analogRead(potPin);
-Serial.println(potVal);
+Serial.print(cnt);
+Serial.println(" Mississippi");
+cnt = cnt + 1;
 delay(DL);
 }
