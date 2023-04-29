@@ -10,6 +10,13 @@ arrow_ = arrow(length=arrow_length, shaftwidth=arrow_width, color=color.red, axi
 data = serial.Serial('COM10', 115200)
 time.sleep(1)
 
+tick_length = 0.1
+tick_width = 0.05
+tick_height = 0.05
+
+for theta in np.linspace(np.pi, 0, 6):
+    tick_major = box(pos=vector(arrow_length * np.cos(theta), arrow_length * np.sin(theta), 0), size=vector(tick_length, tick_width, tick_height))
+
 box_X = 2.5
 box_Y = 1.5
 box_Z = 0.1
@@ -21,7 +28,7 @@ while True:
     data_packet = str(data.readline(), 'utf-8').strip('\r\n')
     pot_val = int(data_packet)
     voltage = (5/1023)*pot_val
-    theta = -np.pi/1023*pot_val + np.pi
+    theta = -2 * np.pi/3069 * pot_val + 5 * np.pi / 6
     arrow_.axis = vector(arrow_length * np.cos(theta), arrow_length * np.sin(theta), 0)
     # label.text = str(round(voltage, 1))
     # for theta in np.linspace(0, np.pi, 150):
